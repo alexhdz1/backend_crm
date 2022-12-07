@@ -20,10 +20,11 @@ COPY . /app
 
 WORKDIR /app
 
+# POETRY SETUP
 ENV POETRY_HOME="/opt/poetry"
 ENV PATH="$POETRY_HOME/bin:$PATH"
-RUN wget -O - https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python \
-    && poetry --version \
+RUN wget -O - https://install.python-poetry.org | python - \
+    && poetry --version  \
     && poetry config virtualenvs.create false
 
 RUN poetry install --no-dev --no-interaction --no-ansi -vvv
