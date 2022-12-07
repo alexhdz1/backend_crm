@@ -13,9 +13,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 import datetime
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+print(BASE_DIR)
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 
 
 # Quick-start development settings - unsuitable for production
@@ -83,11 +86,11 @@ WSGI_APPLICATION = "backend_crm.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "ksp_db",
-        "USER": "root",
-        "PASSWORD": "Alexissac123.",
-        "HOST": "localhost",
-        "PORT": "3306",
+        "NAME": os.environ.get("BD_SQL"),
+        "USER": os.environ.get("USER_SQL"),
+        "PASSWORD": os.environ.get("PASSWORD_SQL"),
+        "HOST": os.environ.get("HOST_SQL"),
+        "PORT": os.environ.get("PORT_SQL"),
     }
 }
 
