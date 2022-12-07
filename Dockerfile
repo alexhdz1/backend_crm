@@ -28,6 +28,7 @@ RUN wget -O - https://install.python-poetry.org | python - \
     && poetry config virtualenvs.create false
 
 RUN poetry install --no-dev --no-interaction --no-ansi -vvv
+RUN poetry shell
 RUN pip install -U uwsgi
 
 EXPOSE 8000
